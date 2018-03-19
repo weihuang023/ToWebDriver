@@ -1,0 +1,7 @@
+<suite name = "Product Cell BRS - Suite">
+	<test name = "BRS">
+		<Classes>
+			<class name = "productCellBRSPack"/>
+		</Classes>
+	</test>
+</suite>
