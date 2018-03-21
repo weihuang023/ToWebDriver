@@ -1,4 +1,4 @@
-package toWebDriver_BRS;
+package toWebDriver_01_MMO;
 import java.io.*;
 
 public class ReadFile {

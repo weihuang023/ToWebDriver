@@ -48,7 +48,7 @@
               <ul>
                 <li>
                   <a href="#" class="navigator-link " panel-name="test-xml-Default_suite">
-                    <span>C:\Users\loadtest\AppData\Local\Temp\testng-eclipse--1656848972\testng-customsuite.xml</span>
+                    <span>C:\Users\loadtest\AppData\Local\Temp\testng-eclipse--2123327090\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -90,7 +90,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method, 1 failed,   </span>
+                    <span class="method-stats">2 methods, 1 failed,   1 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title failed">Failed methods</span>
@@ -101,10 +101,24 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="productCellBRSPack.ProdcutCellBRS" hash-for-method="checkOutClubItem_HD_WF_SY">checkOutClubItem_HD_WF_SY</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="toWebDriver_02_BRS.ProdcutCellBRS" hash-for-method="checkOutCYOItem_HD_WF_SY">checkOutCYOItem_HD_WF_SY</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Default_suite" class="hide-methods passed suite-Default_suite"> (hide)</a> <!-- hide-methods passed suite-Default_suite -->
+                      <a href="#" panel-name="suite-Default_suite" class="show-methods passed suite-Default_suite"> (show)</a> <!-- show-methods passed suite-Default_suite -->
+                    </span>
+                    <div class="method-list-content passed suite-Default_suite">
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="toWebDriver_02_BRS.ProdcutCellBRS" hash-for-method="taxValidation_HD_WF_SY">taxValidation_HD_WF_SY</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-Default_suite -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -119,37 +133,22 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">productCellBRSPack.ProdcutCellBRS</span>
+              <span class="class-name">toWebDriver_02_BRS.ProdcutCellBRS</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="checkOutClubItem_HD_WF_SY">
-                  </a> <!-- checkOutClubItem_HD_WF_SY -->
-                  <span class="method-name">checkOutClubItem_HD_WF_SY</span>
-                  <div class="stack-trace">org.openqa.selenium.WebDriverException: chrome not reachable
-  (Session info: chrome=64.0.3282.186)
-  (Driver info: chromedriver=2.35.528161 (5b82f2d2aae0ca24b877009200ced9065a772e73),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 4.01 seconds
-Build info: version: &apos;3.0.0-beta2&apos;, revision: &apos;2aa21c1&apos;, time: &apos;2016-08-02 15:03:28 -0700&apos;
-System info: host: &apos;cpw70247&apos;, ip: &apos;10.180.7.44&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_25&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.35.528161 (5b82f2d2aae0ca24b877009200ced9065a772e73), userDataDir=C:\Users\loadtest\AppData\Local\Temp\scoped_dir8824_15019}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=64.0.3282.186, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=false, acceptInsecureCerts=false, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=}]
-Session ID: 3cd48e757320244f9e3741e18ab20e41
-*** Element info: {Using=css selector, value=div.n-chkWrapupBtn1 &gt; img}
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:408)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:683)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:402)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementsByCssSelector(RemoteWebDriver.java:502)
-	at org.openqa.selenium.By$ByCssSelector.findElements(By.java:441)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:365)
-	at productCellBRSPack.ProdcutCellBRS.goToPlaceOrder(ProdcutCellBRS.java:314)
-	at productCellBRSPack.ProdcutCellBRS.checkOutClubItem_HD_WF_SY(ProdcutCellBRS.java:155)
+                  <a name="checkOutCYOItem_HD_WF_SY">
+                  </a> <!-- checkOutCYOItem_HD_WF_SY -->
+                  <span class="method-name">checkOutCYOItem_HD_WF_SY</span>
+                  <div class="stack-trace">java.lang.NullPointerException
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:302)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$100(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	at toWebDriver_02_BRS.ProdcutCellBRS.addAddOnItem(ProdcutCellBRS.java:678)
+	at toWebDriver_02_BRS.ProdcutCellBRS.checkOutCYOItem_HD_WF_SY(ProdcutCellBRS.java:204)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -180,10 +179,25 @@ Session ID: 3cd48e757320244f9e3741e18ab20e41
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
           </div> <!-- suite-Default_suite-class-failed -->
+          <div class="suite-Default_suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">toWebDriver_02_BRS.ProdcutCellBRS</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="taxValidation_HD_WF_SY">
+                  </a> <!-- taxValidation_HD_WF_SY -->
+                  <span class="method-name">taxValidation_HD_WF_SY</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Default_suite-class-passed -->
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\loadtest\AppData\Local\Temp\testng-eclipse--1656848972\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\loadtest\AppData\Local\Temp\testng-eclipse--2123327090\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -192,7 +206,7 @@ Session ID: 3cd48e757320244f9e3741e18ab20e41
 &lt;suite guice-stage=&quot;DEVELOPMENT&quot; name=&quot;Default suite&quot;&gt;
   &lt;test verbose=&quot;2&quot; name=&quot;Default test&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;productCellBRSPack.ProdcutCellBRS&quot;/&gt;
+      &lt;class name=&quot;toWebDriver_02_BRS.ProdcutCellBRS&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -232,11 +246,15 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(1);
+data.addRows(2);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'checkOutClubItem_HD_WF_SY')
-data.setCell(0, 2, 'productCellBRSPack.ProdcutCellBRS')
-data.setCell(0, 3, 74958);
+data.setCell(0, 1, 'checkOutCYOItem_HD_WF_SY')
+data.setCell(0, 2, 'toWebDriver_02_BRS.ProdcutCellBRS')
+data.setCell(0, 3, 70773);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'taxValidation_HD_WF_SY')
+data.setCell(1, 2, 'toWebDriver_02_BRS.ProdcutCellBRS')
+data.setCell(1, 3, 2);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
@@ -267,12 +285,16 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">productCellBRSPack.ProdcutCellBRS</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">toWebDriver_02_BRS.ProdcutCellBRS</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">checkOutClubItem_HD_WF_SY</span>
+                <span class="method-name">checkOutCYOItem_HD_WF_SY</span>
                 <span class="method-start">0 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">taxValidation_HD_WF_SY</span>
+                <span class="method-start">70778 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

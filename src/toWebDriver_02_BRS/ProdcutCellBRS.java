@@ -1,4 +1,4 @@
-package productCellBRSPack;
+package toWebDriver_02_BRS;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -24,16 +24,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 public class ProdcutCellBRS {
-  	//variables declaration goes here
+  	// Variables declaration goes here
 	public WebDriver driver;
-	//Add flag for each page 
+	// Add flag for each page 
 	private String page;
-	//getPage
-	public String getPage(){
+	// Get Page
+	public String getPage() {
 		return this.page;
 	}
-	//setPage
-	public void setPage(WebDriver driver,String page){
+	// Set Page
+	public void setPage(WebDriver driver,String page) {
 //		System.out.println("SUBSTRING=================================="+driver.getCurrentUrl().substring(12,17));
 		switch(driver.getCurrentUrl().substring(12,17)){
 			
@@ -82,61 +82,111 @@ public class ProdcutCellBRS {
 		
 		}
 	}
-	//Append to file set to true if use getError() 
+	// Append to file set to true if use getError() 
 	private boolean append_to_file = true;
-	//getAppend
-	public boolean getAppendToFile(){
+	// Get Append
+	public boolean getAppendToFile() {
 		return append_to_file;
 	}
-	//setAppend
-	public void setAppendToFile(boolean append_to_file){
+	// Set Append
+	public void setAppendToFile(boolean append_to_file) {
 		this.append_to_file = append_to_file;
 	}
-	//No Setup Required 
+	// No Setup Required 
 	@Before
 	public void setUp() throws Exception {
 		
 	}
-	//Start CLUB TEST 		
-	@Test
-	public void checkOutClubItem_HD_WF_SY() throws Exception
-	{
-		System.out.println("------------------------ CLUB ITEM Test Case Start -----------------------------");
-
-		System.setProperty("webdriver.chrome.driver", "./lib/chromedriver.exe");
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("start-maximized");
-
-		int n = 1;
+	// Start CLUB Items TEST 		
+//	@Test
+	public void checkOutCLUBItem_HD_WF_SY() throws Exception {
+		int n = 2;
 		Format formatter = new SimpleDateFormat("MMMM"); 
 	    String s = formatter.format(new Date());
-		System.out.println(s);
-		for ( int i = 0 ; i <= n; i++){
-			String search = "CLUB";
-			String arrSite[] = { "https://www.harryanddavid.com","https://www.wolfermans.com","https://www.stokcyards.com"}; 
-			String arrItem[] = {"Signature Classic Fruit Club","Bakery Favorites Club",""};
-			String arrMonth[] = {s,s,s};
-			String arrLength[] = {"9 Months","6 Months","12 Months"};
-		    String locationType = "Residence";
-			String title = "Mr.";
-			String firstName = "Wei";
-			String lastName = "Huang";
-			String addressLine1 = "1 Main st.";
-			String city = "Flushing";
-			String state = "New York";
-			String zipcode = "11355";
-//			String email = "whuang@1800flowers.com";
-			String telephone = "1234567890";
-			String item = "";
+	    
+		String search = "CLUB";
+		String arrSite[] = { "https://www.harryanddavid.com","https://www.wolfermans.com","https://www.stockyards.com"}; 
+		String arrItem[] = {"Signature Classic Fruit Club","Bakery Favorites Club","Stock Yards® Club"};
+		String arrMonth[] = {s,s,s};
+		String arrLength[] = {"9 Months","6 Months","3 Months"};
+	    String locationType = "Residence";
+		String title = "Mr.";
+		String firstName = "Wei";
+		String lastName = "Huang";
+		String addressLine1 = "1 Main st.";
+		String city = "Flushing";
+		String state = "New York";
+		String zipcode = "11355";
+//		String email = "whuang@1800flowers.com";
+		String telephone = "1234567890";
+		String item = "";
 
+		for ( int i = 0 ; i <= n; i++){
+			
 	 	    callBrowser();
 			deleteCookies();
 			goToHome(driver, arrSite[i]);
 		    this.setPage(driver,"PG1_HOME_CLUB");
+		    
+			System.out.println("------------------------ CLUB ITEM "+this.getPage().substring(14)+" TC Start -----------------------------");
+		    System.out.println("GOTO_Home_Page_"+this.getPage());
+			search(driver,search);
+		
+		    System.out.println("GOTO_Collection_Page_"+this.getPage());
+		    if (this.getPage().contains("HND")) {
+		    	item= arrItem[0];
+		    }
+		    else if (this.getPage().contains("WLF")) {
+		    	item = arrItem[1];
+		    } 
+		    else {
+		    	item = arrItem[2];
+		    }
+		    goToProduct(driver,item);
+		    if (driver.findElements(By.linkText("ADD SOMETHING SPECIAL")).size() != 0) {
+		    	addAddOnItem();
+		    }
+		    System.out.println("GOTO_Product_Page_"+this.getPage());
+		    goToCheckOut(driver, "", "", "", arrMonth[i], arrLength[i]);;
+		    System.out.println("GOTO_Checkout_Page_"+this.getPage());
+		    goToPlaceOrder(driver,title,firstName,lastName, locationType,addressLine1,city,state,zipcode,telephone);
+		    System.out.println("GOTO_PlaceOrder_Page_"+this.getPage());	
+			System.out.println(" ----------------------- End of Test --------------------- ");
+		    driver.quit();
+		}
+	}
+	// Start CYO Items TEST 		
+	@Test
+	public void checkOutCYOItem_HD_WF_SY() throws Exception {
+		
+		int n = 1;
+		String search = "CYO";
+		String arrSite[] = { "https://www.harryanddavid.com","https://www.wolfermans.com",""}; 
+		String arrItem[] = {"Choose Your Own Harry & David™ Wines – 6 Bottles","Create-Your-Own Loaf Cakes - 4 Packages",""};
+	    String locationType = "Residence";
+		String title = "Mr.";
+		String firstName = "Wei";
+		String lastName = "Huang";
+		String addressLine1 = "1 Main st.";
+		String city = "Flushing";
+		String state = "New York";
+		String zipcode = "11355";
+//		String email = "whuang@1800flowers.com";
+		String telephone = "1234567890";
+		String item = "";
+
+		for ( int i = 1 ; i <= n; i++){
+			
+	 	    callBrowser();
+			deleteCookies();
+			goToHome(driver, arrSite[i]);
+		    this.setPage(driver,"PG1_HOME_CYO");
+		    
+			System.out.println("------------------------ CYO ITEM "+this.getPage().substring(13)+" TC Start -----------------------------");
 		
 		    System.out.println("GOTO_Home_Page_"+this.getPage());
 			search(driver,search);
-		    //goToCollection(driver, collection);
+		
 		    System.out.println("GOTO_Collection_Page_"+this.getPage());
 		    if (this.getPage().contains("HND")) {
 		    	item= arrItem[0];
@@ -149,21 +199,27 @@ public class ProdcutCellBRS {
 		    }
 	
 		    goToProduct(driver,item);
+		    selectCYOItem();
+		    if (driver.findElements(By.linkText("ADD SOMETHING SPECIAL")).size() != 0) {
+		    	addAddOnItem();
+		    }
 		    System.out.println("GOTO_Product_Page_"+this.getPage());
-		    goToCheckOut(driver, "", "", "", arrMonth[i], arrLength[i]);;
+		    goToCheckOut(driver, "", "", "","", item);;
 		    System.out.println("GOTO_Checkout_Page_"+this.getPage());
 		    goToPlaceOrder(driver,title,firstName,lastName, locationType,addressLine1,city,state,zipcode,telephone);
 		    System.out.println("GOTO_PlaceOrder_Page_"+this.getPage());	
+			System.out.println(" ------------------------------ End of Test Case ----------------------------------- ");
 		    driver.quit();
 		}
-		System.out.println("------------------------ CLUB ITEM TC End -----------------------------");
-
 	}
-	//Home - Landing Page
-	public void goToHome(WebDriver driver, String homePage) throws InterruptedException{
+	// Tax Validation
+	@Test
+	public void taxValidation_HD_WF_SY() throws Exception {
+		
+	}
+	// Home - Landing Page
+	public void goToHome(WebDriver driver, String homePage) throws InterruptedException {
 	    driver.get(homePage);
-	    
-
 	    driver.manage().window().setPosition(new Point(-1000, 0));
 	    Thread.sleep(5000);
 	    //.bx-close-x-adaptive
@@ -172,18 +228,10 @@ public class ProdcutCellBRS {
     		driver.findElement(By.className("bx-close-xstroke")).click();
     	}
 	 }
-	//Search
-	public void search(WebDriver driver, String searchTerm){
-		driver.findElement(By.id("SearchBox")).click();
-		driver.findElement(By.id("SearchBox")).sendKeys(searchTerm);
-		driver.findElement(By.id("SearchBox")).sendKeys(Keys.ENTER);
-		this.setPage(driver, "PG2_"+searchTerm);
-	}
-	//Collection - Birthday and Best Sell, GNAV for 18F and FBQ
-	public void goToCollection(WebDriver driver,String collectionPage) throws InterruptedException{ 
+	// Collection - Birthday and Best Sell, GNAV for 18F and FBQ
+	public void goToCollection(WebDriver driver,String collectionPage) throws InterruptedException {
 	    driver.findElement(By.linkText(collectionPage)).click();
 	    Thread.sleep(3000);
-	    
 	    if (driver.getCurrentUrl().contains("1800flowers")){
 		    System.out.println("SKIPPING GNAV on 18F Products");
 		    driver.findElement(By.linkText("skip")).click();
@@ -191,8 +239,8 @@ public class ProdcutCellBRS {
 	    Thread.sleep(3000);
 	    this.setPage(driver,"PG2_CL_");
 	}
-	//Product - Select 1st Product on the left corner
-	public void goToProduct(WebDriver driver, String product){
+	// Product - Select 1st Product on the left corner
+	public void goToProduct(WebDriver driver, String product) {
 	    driver.findElement(By.cssSelector("img[alt=\""+product+"\"]")).click();
 //		WebDriverWait wait = new WebDriverWait(driver, 60);
 //	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("prodimglarge")));
@@ -200,33 +248,27 @@ public class ProdcutCellBRS {
 	    {
 	    	this.setPage(driver,"PG3_PR_CLUB");
 	    }
+	    else if (this.getPage().contains("CYO"))
+	    {
+	    	this.setPage(driver,"PG3_PR_CYO");
+	    } 
 	    else
 	    {
-	    	this.setPage(driver,"PG3_PR_");
+	      	this.setPage(driver,"PG3_PR_");
 	    }
 	}
-	//Checkout - Delivery Date select as 30th of month
-	public void goToCheckOut(WebDriver driver, String zipCode, String locationType, String deliveryDate, String startMonth, String clubLength)throws InterruptedException{
+	// Checkout - Delivery Date select as 30th of month
+	public void goToCheckOut(WebDriver driver, String zipCode, String locationType, String deliveryDate, String startMonth, String clubLength)throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 60);
-	    if(this.getPage().contains("CLUB")){
+	    if(this.getPage().contains("CLUB")) {
 	    	System.out.println("Step 1: Select Starting Month: "+startMonth);
 	    	Thread.sleep(1000);
 	        new Select(driver.findElement(By.id("ItemStartMonth"))).selectByVisibleText(startMonth);
 	        
 	    	System.out.println("Step 2: Select Club Length: "+clubLength);
 	    	Thread.sleep(1000);
-	    	   new Select(driver.findElement(By.id("duration"))).selectByVisibleText(clubLength);
-//	    	if(this.getPage().contains("HND")){
-//	    	    new Select(driver.findElement(By.id("duration"))).selectByVisibleText("9 Months");
-//	    	  
-//	    	} 
-//	    	else if(this.getPage().contains("WLF")){ 
-//	    		new Select(driver.findElement(By.id("duration"))).selectByVisibleText("6 Months");
-//	    	}
-//	    	else {
-//	    		new Select(driver.findElement(By.id("duration"))).selectByVisibleText("6 Months");
-//	    	}
-	    	
+	    	new Select(driver.findElement(By.id("duration"))).selectByVisibleText(clubLength);
+
 	        System.out.println("Step 3: ADD TO CART");
 	        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("addtoCartLinkForClub")));	
 	        driver.findElement(By.id("addtoCartLinkForClub")).click();
@@ -237,6 +279,21 @@ public class ProdcutCellBRS {
 	        Thread.sleep(5000);
 	       	this.setPage(driver,"PG4_CO_CLUB");
 	    } 
+	    else if (this.getPage().contains("CYO")) {
+	    	if(this.getPage().contains("HND")) {
+	    	   	System.out.println("Step 1: Add To Cart");
+		        driver.findElement(By.id("add-update1")).click();
+		    	wineCheckOut();
+	    	}
+	    	else {
+	    	   	System.out.println("Step 1: ADD TO CART");
+		        driver.findElement(By.id("divAddToCartBtnStatic")).click();
+		       	System.out.println("Step 2: CHECKOUT ");
+		       	Thread.sleep(3000);
+		        driver.findElement(By.xpath("//div[3]/div[3]/div/a")).click();
+	    	}
+	    	this.setPage(driver,"PG4_CO_CYO");
+	    }
 	    else {
 		    System.out.println("Step 1: Enter Zipcode            :" +zipCode);
 	        driver.findElement(By.xpath("//input[@id='zipCode']")).click();
@@ -265,10 +322,9 @@ public class ProdcutCellBRS {
 	        this.setPage(driver,"PG4_CO_");
         }
 	}
-	//Place Order - 1. No Gift Message 2. Skip Wrap
-	public void goToPlaceOrder(WebDriver driver, String title, String firstName, String lastName, String locationType, String addressLine1, String city, String state, String zipcode, String telephone) throws InterruptedException{
+	// Place Order - 1. No Gift Message 2. Skip Wrap
+	public void goToPlaceOrder(WebDriver driver, String title, String firstName, String lastName, String locationType, String addressLine1, String city, String state, String zipcode, String telephone) throws InterruptedException {
 	    System.out.println("Step 1: Enter Recipient Shipping Address");
-
 	    new Select(driver.findElement(By.id("addressSelection_1"))).selectByVisibleText(title);
 		driver.findElement(By.id("firstName")).clear();
 		driver.findElement(By.id("firstName")).sendKeys(firstName);
@@ -277,15 +333,13 @@ public class ProdcutCellBRS {
 		new Select(driver.findElement(By.id("addressTypeSelection"))).selectByVisibleText(locationType);
 		if("Business".equalsIgnoreCase(locationType)){driver.findElement(By.id("WC_ShoppingCartAddressEntryForm_FormInput_company_1")).sendKeys("Auto Test Company");}
 		driver.findElement(By.id("QAS_lineone")).sendKeys(addressLine1);
-	    if(this.getPage().contains("CLUB"))
-	    {	
+	    if(this.getPage().contains("CLUB")||this.getPage().contains("CYO")) {	
 	    	driver.findElement(By.id("QAS_city")).clear();
 			driver.findElement(By.id("QAS_city")).sendKeys(city);
 	    	new Select(driver.findElement(By.id("state"))).selectByVisibleText(state);
 			driver.findElement(By.id("zip")).clear();
 			driver.findElement(By.id("zip")).sendKeys(zipcode);
 	    }
-	
 //		if(Brand.equalsIgnoreCase("FBQ"))
 //		{
 //			new Select(driver.findElement(By.id("city12"))).selectByVisibleText("Flushing");
@@ -296,7 +350,6 @@ public class ProdcutCellBRS {
 //			new Select(driver.findElement(By.id("state"))).selectByVisibleText("New York");
 //			driver.findElement(By.id("zip")).sendKeys(zipCode);
 //		}
-		
 		driver.findElement(By.id("WC_ShoppingCartAddressEntryForm_FormInput_phone1_1")).sendKeys(telephone);
 		driver.findElement(By.name("billingAddress")).click();
 		//driver.findElement(By.cssSelector("img[alt=\"continueToDeliveryOptions\"]")).click();
@@ -326,8 +379,8 @@ public class ProdcutCellBRS {
 	    	this.setPage(driver,"PG5_PO_");
 	    }
 	}
-	//Active WAVE - use robot
-	public void activeWAVE(WebDriver driver) throws AWTException{
+	// Active WAVE - USE Robot
+	public void activeWAVE(WebDriver driver) throws AWTException {
 	    System.out.println("ACTIVING WAVE Extension");
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_CONTROL);
@@ -339,8 +392,8 @@ public class ProdcutCellBRS {
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[contains(@src,'chrome-extension://jbbplnpkjmmeebjpijfedlgcdilocofh/img/icons/text_justified.png')]")));		   
 	}
-	//Get Error Count with different error
-	public void getERROR(WebDriver driver) throws Exception{
+	// Get Error Count with Different Error
+	public void getERROR(WebDriver driver) throws Exception {
 		System.out.println("GETTING ERROR COUNTS");
 		List<WebElement> errorTotal = driver.findElements(By.xpath("//img[contains(@alt,'ERRORS: ')]")); 
 		
@@ -505,9 +558,8 @@ public class ProdcutCellBRS {
 	    printWriter.println( "--------------------------------------------------------------------------");
 	    printWriter.close();
 	}
-	//Verify each error on type and HTML
-	public void verifyERROR(WebDriver driver) throws Exception
-	{
+	// Verify Each Error on type and HTML
+	public void verifyERROR(WebDriver driver) throws Exception {
 		List<WebElement> image_Error = driver.findElements(By.xpath("//img[contains(@alt,'ERRORS: ')]")); 
 		//System.out.println("Number of Errors :"+image_Error.size());
 	    FileWriter fileWriter = new FileWriter("c://Results_"+this.getPage()+".txt",this.getAppendToFile());
@@ -575,9 +627,63 @@ public class ProdcutCellBRS {
 //		String text = driver.findElement(By.xpath("//img[contains(@src,'chrome-extension://jbbplnpkjmmeebjpijfedlgcdilocofh/img/icons/label_missing.png')]")).getText();
 //		String tag = driver.findElement(By.xpath("//img[contains(@src,'chrome-extension://jbbplnpkjmmeebjpijfedlgcdilocofh/img/icons/label_missing.png')]")).getTagName();
 	}
-	//Driver 
-	public void callBrowser()
-    {
+	// Search
+	public void search(WebDriver driver, String searchTerm) {
+		driver.findElement(By.id("SearchBox")).click();
+		driver.findElement(By.id("SearchBox")).sendKeys(searchTerm);
+		driver.findElement(By.id("SearchBox")).sendKeys(Keys.ENTER);
+		this.setPage(driver, "PG2_"+searchTerm);
+	}
+	// CYO Select
+	public void selectCYOItem() {
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[4]/div[3]/div[2]/select")));	
+		if(this.getPage().contains("HND")) {
+		new Select(driver.findElement(By.xpath("//div[4]/div[3]/div[2]/select"))).selectByVisibleText("2");
+		new Select(driver.findElement(By.xpath("//div[5]/div[3]/div[2]/select"))).selectByVisibleText("2");
+		new Select(driver.findElement(By.xpath("//div[6]/div[3]/div[2]/select"))).selectByVisibleText("2");
+		}
+		else {
+		new Select(driver.findElement(By.xpath("//div[2]/div[3]/div[2]/select"))).selectByVisibleText("2");
+		new Select(driver.findElement(By.xpath("//div[3]/div[3]/div[2]/select"))).selectByVisibleText("1");
+		new Select(driver.findElement(By.xpath("//div[4]/div[3]/div[2]/select"))).selectByVisibleText("1");
+		}
+	}
+	// Wine Checkout
+	public void wineCheckOut() {
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+        System.out.println("Step 2: Enter Zipcode  ");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='PostalCode']")));	
+        driver.findElement(By.xpath("//input[@id='PostalCode']")).click();
+        driver.findElement(By.id("PostalCode")).click();
+        driver.findElement(By.id("PostalCode")).clear();
+        driver.findElement(By.id("PostalCode")).sendKeys("11355");
+	    System.out.println("Step 3: Enter Birthday ");
+		new Select(driver.findElement(By.id("birthMonth"))).selectByVisibleText("Apr");
+		new Select(driver.findElement(By.id("birthDay"))).selectByVisibleText("5");
+		new Select(driver.findElement(By.id("birthYear"))).selectByVisibleText("1910");
+	    System.out.println("Step 4: CONFIRM  ");
+        driver.findElement(By.id("wineConfirmBtn")).click();
+	    System.out.println("Step 5: CHECKOUT ");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[3]/div[3]/div/a")));	
+	    driver.findElement(By.xpath("//div[3]/div[3]/div/a")).click();
+	}
+	// Add On
+	public void addAddOnItem() {
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("ADD SOMETHING SPECIAL")));	
+		System.out.println("ADD SOMETHING SPECIAL");
+	    driver.findElement(By.linkText("ADD SOMETHING SPECIAL")).click();
+		System.out.println("SELECT Add-On Items");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("//li[3]/label/input")));	
+		 driver.findElement(By.xpath("//li[3]/label/input")).click();
+		 driver.findElement(By.xpath("//li[4]/label/input")).click();
+		 driver.findElement(By.xpath("//li[5]/label/input")).click();
+		System.out.println("ADD ADD-ON Items");
+		 driver.findElement(By.id("AddAddonItems")).click();
+	}
+	// Driver 
+	public void callBrowser() {
 
 	//########################################################################################################################
 	
@@ -589,25 +695,25 @@ public class ProdcutCellBRS {
 	//	FirefoxProfile profile = new FirefoxProfile();
 	//	ffprofile.setPreference("network.proxy.type", 1); //1 for manual proxy, 2 for auto config url
 	//	ffprofile.setPreference("network.proxy.http", "cptmg");
-		//ffprofile.setPreference("network.proxy.http_port", 4444);
-	//System.setProperty("webdriver.gecko.driver","C:\\Selenium Testing 2\\Selenium component\\geckodriver.exe");
-	//driver = new FirefoxDriver();
+    //  ffprofile.setPreference("network.proxy.http_port", 4444);
+	//	System.setProperty("webdriver.gecko.driver","C:\\Selenium Testing 2\\Selenium component\\geckodriver.exe");
+	//	driver = new FirefoxDriver();
 	
-	//ProfilesIni profile = new ProfilesIni();
-	//FirefoxProfile myprofile = profile.getProfile("default");
-	//myprofile.setAcceptUntrustedCertificates(true);
-	//myprofile.setAssumeUntrustedCertificateIssuer(false);
-	//driver = new FirefoxDriver(myprofile);
+	//	ProfilesIni profile = new ProfilesIni();
+	//	FirefoxProfile myprofile = profile.getProfile("default");
+	//	myprofile.setAcceptUntrustedCertificates(true);
+	//	myprofile.setAssumeUntrustedCertificateIssuer(false);
+	//	driver = new FirefoxDriver(myprofile);
 	
 	//=====================================================================
 	// Fire Fox - MJS
 	//=====================================================================
 	/*
 	// This is the current Firefox Driver - 7-10-17 //
-	System.setProperty("webdriver.gecko.driver","C:\\Selenium Testing/Selenium component/geckodriver.exe");
-	DesiredCapabilities capabilities = new DesiredCapabilities();
-	capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
-	driver = new FirefoxDriver(capabilities);
+		System.setProperty("webdriver.gecko.driver","C:\\Selenium Testing/Selenium component/geckodriver.exe");
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+		driver = new FirefoxDriver(capabilities);
 	*/
 	//---------------------------------------------------------------------
 	//=====================================================================
@@ -653,7 +759,7 @@ public class ProdcutCellBRS {
 	//		alert.authenticateUsing(new UserAndPassword("cnishant", ""));
 	
     }
-    //Clear
+    // Clear
 	public void deleteCookies() throws InterruptedException {
     	driver.manage().deleteAllCookies();
     }

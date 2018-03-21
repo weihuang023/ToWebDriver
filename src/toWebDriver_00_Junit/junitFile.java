@@ -1,7 +1,7 @@
 /**
  * 
  */
-package junitProject;
+package toWebDriver_00_Junit;
 
 import static org.junit.Assert.*;
 
